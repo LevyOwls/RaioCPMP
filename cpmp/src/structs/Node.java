@@ -334,6 +334,7 @@ public class Node
 		int i,j;
 		Column temp;
 		
+		ArrayList extraMovs=new ArrayList();
 		//POR CADA COLUMNA
 		for (i=0;i<instancia.size();i++)
 		{
@@ -372,7 +373,7 @@ public class Node
 						Node hijo=new Node(nuevo,getIndice());
 				
 						
-
+						
 						//SE EVALUA 
 						int bestMovs=1000000000;
 						int hh;
@@ -394,6 +395,10 @@ public class Node
 						if (hijo.getMovimientos()<getMovimientos())
 						{
 							hijos.add(hijo);
+						}
+						else
+						{
+							extraMovs.add(hijo);
 						}
 						
 					}
@@ -422,8 +427,8 @@ public class Node
 	
 		else
 		{
-			
-			setwFlag(1);
+			//Find movs+1
+			hijos=sortByMovs(extraMovs);
 		}
 		//showtime2();
 	}
@@ -463,4 +468,23 @@ public class Node
 		}
 		
 	}
+	
+	public ArrayList sortByMovs(ArrayList lista)
+	{
+		int i;
+		ArrayList movs=new ArrayList();
+		Node aux;
+		for (i=0;i<lista.size();i++)
+		{
+			aux=(Node) lista.get(i);
+			movs.add(aux.getMovimientos());
+		}
+		
+		lista=bubbleSort(movs, lista);
+		
+		return lista;
+	}
+	
+	
+	
 }
