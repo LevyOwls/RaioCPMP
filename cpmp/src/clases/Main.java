@@ -28,7 +28,6 @@ public class Main
 		{
 			File dir=(File)instances.remove(0);
 			ArrayList nuevo=movs(dir);
-		
 			System.out.println(nuevo.get(0)+"\t"+nuevo.get(1));
 		
 		}
